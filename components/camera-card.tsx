@@ -1,4 +1,4 @@
-// Camera Card Component - Displays a single camera
+// Camera Card Component - Displays a single camera (V1 styling)
 
 import { Camera } from '@/types';
 
@@ -8,69 +8,55 @@ interface CameraCardProps {
 
 export function CameraCard({ camera }: CameraCardProps) {
   return (
-    <div className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow bg-white">
+    <div className="bg-white border border-[#e5e5e5] rounded-lg p-5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:border-[#d4d4d4] transition-all cursor-pointer flex flex-col">
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {camera.model}
-          </h3>
-          <p className="text-sm text-gray-600">{camera.brand}</p>
+      <div className="mb-4 pb-4 border-b border-[#f5f5f5]">
+        <div className="text-[13px] text-[#737373] mb-1 font-medium">
+          {camera.brand}
         </div>
+        <h3 className="text-[16px] font-semibold text-[#171717] mb-0.5 tracking-tight">
+          {camera.model}
+        </h3>
         {camera.flags && camera.flags.length > 0 && (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+          <div className="inline-block px-2 py-0.5 bg-[#f5f5f5] rounded text-[11px] font-semibold text-[#171717] mt-2">
             {camera.flags[0]}
-          </span>
+          </div>
         )}
       </div>
 
       {/* Specs Grid */}
-      <div className="space-y-2 mb-4">
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Mount:</span>
-          <span className="font-medium text-gray-900">{camera.native_mount}</span>
+      <div className="space-y-3 mb-4">
+        <div className="flex justify-between text-[13px]">
+          <span className="text-[#737373]">Mount:</span>
+          <span className="font-semibold text-[#171717]">{camera.native_mount}</span>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Sensor:</span>
-          <span className="font-medium text-gray-900">
+        <div className="flex justify-between text-[13px]">
+          <span className="text-[#737373]">Sensor:</span>
+          <span className="font-semibold text-[#171717]">
             {camera.sensor_modes[0]?.crop_class || 'N/A'}
           </span>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Power:</span>
-          <span className="font-medium text-gray-900">{camera.power.mount}</span>
+        <div className="flex justify-between text-[13px]">
+          <span className="text-[#737373]">Power:</span>
+          <span className="font-semibold text-[#171717]">{camera.power.mount}</span>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Media:</span>
-          <span className="font-medium text-gray-900 text-right">
+        <div className="flex justify-between text-[13px]">
+          <span className="text-[#737373]">Media:</span>
+          <span className="font-semibold text-[#171717] text-right">
             {camera.media_slots[0]}
           </span>
         </div>
       </div>
 
-      {/* Sensor Modes */}
-      {camera.sensor_modes.length > 0 && (
-        <div className="border-t border-gray-100 pt-4">
-          <p className="text-xs font-medium text-gray-700 mb-2">Sensor Modes:</p>
-          <div className="space-y-1">
-            {camera.sensor_modes.slice(0, 2).map((mode, idx) => (
-              <div key={idx} className="text-xs text-gray-600">
-                • {mode.name}
-              </div>
-            ))}
-            {camera.sensor_modes.length > 2 && (
-              <div className="text-xs text-gray-500">
-                +{camera.sensor_modes.length - 2} more
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Action Button */}
-      <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors">
-        View Details
-      </button>
+      {/* Action Buttons */}
+      <div className="flex gap-2 mt-auto pt-4">
+        <button className="flex-1 px-3 py-2 text-[13px] rounded-md font-medium bg-[#171717] text-white border border-[#171717] hover:bg-[#262626] hover:border-[#262626] transition-all">
+          Add to Package
+        </button>
+        <button className="flex-1 px-3 py-2 text-[13px] rounded-md font-medium bg-white text-[#171717] border border-[#e5e5e5] hover:border-[#d4d4d4] hover:bg-[#fafafa] transition-all">
+          Compare
+        </button>
+      </div>
     </div>
   );
 }
